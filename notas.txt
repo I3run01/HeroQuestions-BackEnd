@@ -1,0 +1,8 @@
+- Testes sõa pedaços de códigos que você cria para ter certeza que uma parte do sistema continua funcionando
+
+- TDD (Test-Driven Development) = Desenvolvimento orientado a testes
+
+- Tipos de testes
+-- Testes unitários (unit test) //por partes
+-- Testes de integração (integration test) //no código
+-- Testes end-to-end (e2e test) //interface
