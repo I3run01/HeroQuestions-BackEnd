@@ -20,7 +20,8 @@ export const User = sequelize.define<UserInstance>('User', {
     password: {
         type: DataTypes.STRING
     }
-}, {
+},
+{
     tableName: 'users',
     timestamps: false
 });
