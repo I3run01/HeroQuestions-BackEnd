@@ -1,32 +1,13 @@
-import express, { Request, Response, ErrorRequestHandler } from 'express';
-import path from 'path';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import apiRoutes from './routes/api';
+import cors from 'cors'
+import express from 'express'
+import bodyParser from 'body-parser'
+import { config } from './config'
 
-dotenv.config();
+const app = express()
 
-const server = express();
+app.use(express.json())
+app.use(cors())
+app.use(bodyParser.json())
 
-server.use(cors());
 
-server.use(express.static(path.join(__dirname, '../public')));
-server.use(express.urlencoded({ extended: true }));
-
-server.get('/ping', (req: Request, res: Response) => res.json({ pong: true }));
-
-server.use(apiRoutes);
-
-server.use((req: Request, res: Response) => {
-    res.status(404);
-    res.json({ error: 'Endpoint não encontrado.' });
-});
-
-const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
-    res.status(400); // Bad Request
-    console.log(err);
-    res.json({ error: 'Ocorreu algum erro.' });
-}
-server.use(errorHandler);
-
-export default server
+app.listen(config.port, () => console.log('App listening on url http://localhost:8080' + config.port))
