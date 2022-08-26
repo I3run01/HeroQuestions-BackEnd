@@ -1,7 +1,8 @@
-import firebase from "../db";
+import {app} from "../db";
+import {analytics} from '../db'
 import { Student } from "../models/Students";
 
-const firestore = firebase.fireStore()
+const firestore = app.firestore()
 
 const addStudent = async (req: Request, res: Response) => {
     try {
