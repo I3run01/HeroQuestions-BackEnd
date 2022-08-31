@@ -1,19 +1,14 @@
 import e, { Request, Response } from 'express'
-import Users from '../Model/Users'
+import * as services from '../services/mongoDB'
 
 
 export const ping = (req: Request, res: Response) => {
     res.json({ pong: true })
 }
 
-export const findAllUsers = async (req: Request, res: Response) => {
-    let users = await Users.find({})
-    console.log(users)
-    res.json(users)
-}
+export const register = async (req: Request, res: Response) => {
 
-export const createUser =async (req: Request, res: Response) => {
-    let user = 'testeUser2'
-    let password = 'passwordtest'
-    
+    const response = await services.createUser('teste@gmail.com' , 'gshvfghjvscjh')
+    res.json({response: response})
+
 }
