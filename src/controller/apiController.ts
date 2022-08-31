@@ -11,3 +11,9 @@ export const findAllUsers = async (req: Request, res: Response) => {
     console.log(users)
     res.json(users)
 }
+
+export const createUser =async (req: Request, res: Response) => {
+    let user = 'testeUser2'
+    let password = 'passwordtest'
+    
+}
