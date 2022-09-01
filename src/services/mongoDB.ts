@@ -1,17 +1,25 @@
 import User from '../Model/users'
+import bcrypt from 'bcrypt'
 
 export const createUser = async (email: string, password: string) => {
 
     const hasUser = await User.findOne({email: email})
     if(!hasUser) {
+        const hash = bcrypt.hashSync(password, 10)
         let newUser = await User.create({
-            email: 'testename',
-            password: 'testePassword'
+            email: email,
+            password: hash
         })
         await newUser.save()
-        return "user has been created"
-    }
+        return {response: "user has been created", status: true}
+    } return {response: "user already exists", status: false}
+}
 
-    return "user already exists"
+export const findbyEmail = async (email: string) => {
+    return await User.findOne({email: email})
 
+}
+
+export const matchPassword = async (passwordText: string, encrypted: string) => {
+    return bcrypt.compareSync(passwordText, encrypted)
 }
