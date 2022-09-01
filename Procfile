@@ -1,0 +1,1 @@
+web: node -e ts,json src/server.ts
