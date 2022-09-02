@@ -47,7 +47,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.json(response)
     }res.json({response: 'E-mail or password not sent', status: false})
     */
-    res.json({ status: true });
+    res.json({ status: 'test' });
 });
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
