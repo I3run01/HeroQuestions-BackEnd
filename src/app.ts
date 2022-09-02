@@ -3,6 +3,7 @@ import path from 'path'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import router from './router/api'
+import sslRedirect from 'heroku-ssl-redirect'
 import { mongoConnect } from './database/mongoDB'
 
 dotenv.config()
@@ -29,5 +30,6 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
 }
 
 server.use(errorHandler)
+server.use(sslRedirect())
 
 export default server
