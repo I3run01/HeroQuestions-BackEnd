@@ -13,8 +13,7 @@ export const register = async (req: Request, res: Response) => {
         let {email, password} = req.body
 
         const response = await services.createUser(email , password)
-        //return res.json(response)
-        return res.json({status:'test'})
+        return res.json(response)
     }res.json({response: 'E-mail or password not sent', status: false})
     
 
