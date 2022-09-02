@@ -8,7 +8,6 @@ const path_1 = __importDefault(require("path"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const api_1 = __importDefault(require("./router/api"));
-const heroku_ssl_redirect_1 = __importDefault(require("heroku-ssl-redirect"));
 const mongoDB_1 = require("./database/mongoDB");
 dotenv_1.default.config();
 const server = (0, express_1.default)();
@@ -27,5 +26,4 @@ const errorHandler = (err, req, res, next) => {
     res.json({ error: 'OK' });
 };
 server.use(errorHandler);
-server.use((0, heroku_ssl_redirect_1.default)());
 exports.default = server;
