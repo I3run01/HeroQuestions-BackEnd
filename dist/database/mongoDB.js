@@ -22,3 +22,5 @@ const mongoConnect = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.mongoConnect = mongoConnect;
+//mongodb+srv://Bruno:1515@teppa-database.m10wqfj.mongodb.net/TeppaDB?retryWrites=true&w=majority
+//mongodb+srv://Bruno:1515@teppa-database.m10wqfj.mongodb.net/?retryWrites=true&w=majority
