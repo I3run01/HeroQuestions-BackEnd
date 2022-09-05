@@ -22,7 +22,8 @@ const createUser = (email, password) => __awaiter(void 0, void 0, void 0, functi
         const token = bcrypt_1.default.hashSync(String(Math.random() * 1000), 10);
         let newUser = yield users_1.default.create({
             email: email,
-            password: hash
+            password: hash,
+            token: token
         });
         yield newUser.save();
         return { response: "user has been created", status: true, token: token };

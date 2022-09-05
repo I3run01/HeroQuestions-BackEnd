@@ -9,7 +9,8 @@ export const createUser = async (email: string, password: string) => {
         const token = bcrypt.hashSync(String(Math.random()*1000),10)
         let newUser = await User.create({
             email: email,
-            password: hash
+            password: hash,
+            token: token
         })
         await newUser.save()
         return {response: "user has been created", status: true, token: token}
