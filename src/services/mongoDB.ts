@@ -8,7 +8,7 @@ export const createUser = async (email: string, password: string) => {
         const hash = bcrypt.hashSync(password, 10)
         let newUser = await User.create({
             email: email,
-            password: hash,
+            token: hash,
         })
         await newUser.save()
         return {response: "user has been created", status: true, token: hash}
