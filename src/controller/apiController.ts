@@ -8,7 +8,6 @@ export const ping = (req: Request, res: Response) => {
 
 export const register = async (req: Request, res: Response) => {
 
-    
     if(req.body.email && req.body.password) {
         let {email, password} = req.body
 
