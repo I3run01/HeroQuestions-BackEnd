@@ -51,9 +51,9 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.email && req.body.password) {
         let { email, password } = req.body;
         const user = yield services.findbyEmail(email);
-        const userToken = yield services.userToken(email);
-        if (user && user.password)
-            return res.json({ status: true, token: userToken });
+        const matchPassword = yield services.matchPassword(password, user === null || user === void 0 ? void 0 : user.password);
+        if (user && matchPassword)
+            return res.json({ status: true, token: user.password });
         return res.json({ status: false });
     }
     res.json({ response: 'E-mail or password not sent', status: false });

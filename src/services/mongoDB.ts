@@ -20,11 +20,7 @@ export const findbyEmail = async (email: string) => {
 
 }
 
-export const matchPassword = async (passwordText: string, encrypted: string) => {
-    return bcrypt.compareSync(passwordText, encrypted)
-}
-
-export const userToken = async (email: string) => {
-    let user = await User.findOne({email: email})
-    return user?.password
+export const matchPassword = async (passwordText?: string, encrypted?: string) => {
+    if(passwordText && encrypted) return bcrypt.compareSync(passwordText, encrypted)
+    return false
 }

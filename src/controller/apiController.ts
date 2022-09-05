@@ -23,10 +23,11 @@ export const login = async (req: Request, res: Response) => {
     if(req.body.email && req.body.password) {
         let {email, password} = req.body
         const user = await services.findbyEmail(email)
-        const userToken = await services.userToken(email)
+        const matchPassword = await services.matchPassword(password, user?.password)
         
-        if(user && user.password) return res.json({status: true, token: userToken})
+        if(user && matchPassword )return res.json({status: true, token: user.password})
         return res.json({status:false})
+        
     }res.json({response: 'E-mail or password not sent', status: false})
     
 }

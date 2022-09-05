@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userToken = exports.matchPassword = exports.findbyEmail = exports.createUser = void 0;
+exports.matchPassword = exports.findbyEmail = exports.createUser = void 0;
 const users_1 = __importDefault(require("../Model/users"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const createUser = (email, password) => __awaiter(void 0, void 0, void 0, function* () {
@@ -34,11 +34,8 @@ const findbyEmail = (email) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.findbyEmail = findbyEmail;
 const matchPassword = (passwordText, encrypted) => __awaiter(void 0, void 0, void 0, function* () {
-    return bcrypt_1.default.compareSync(passwordText, encrypted);
+    if (passwordText && encrypted)
+        return bcrypt_1.default.compareSync(passwordText, encrypted);
+    return false;
 });
 exports.matchPassword = matchPassword;
-const userToken = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    let user = yield users_1.default.findOne({ email: email });
-    return user === null || user === void 0 ? void 0 : user.password;
-});
-exports.userToken = userToken;
