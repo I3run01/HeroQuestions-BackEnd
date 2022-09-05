@@ -29,4 +29,5 @@ const router = (0, express_1.Router)();
 router.get('/ping', apiController.ping);
 router.post('/register', apiController.register);
 router.post('/login', apiController.login);
+router.post('/tokenValidation', apiController.tokenValidation);
 exports.default = router;
