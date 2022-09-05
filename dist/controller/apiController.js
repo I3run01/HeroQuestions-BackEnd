@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.register = exports.ping = void 0;
+exports.tokenValidation = exports.login = exports.register = exports.ping = void 0;
 const services = __importStar(require("../services/mongoDB"));
 const ping = (req, res) => {
     res.json({ pong: true });
@@ -51,11 +51,21 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.email && req.body.password) {
         let { email, password } = req.body;
         const user = yield services.findbyEmail(email);
-        const matchPassword = yield services.matchPassword(password, user === null || user === void 0 ? void 0 : user.password);
+        const matchPassword = yield services.matchPassword(password, user === null || user === void 0 ? void 0 : user.token);
         if (user && matchPassword)
-            return res.json({ status: true, token: user.password });
+            return res.json({ status: true, token: user.token });
         return res.json({ status: false });
     }
     res.json({ response: 'E-mail or password not sent', status: false });
 });
 exports.login = login;
+const tokenValidation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.body.token && req.body.email) {
+        let { token, email } = req.body;
+        const user = yield services.findbyEmail(email);
+        if ((user === null || user === void 0 ? void 0 : user.token) === token)
+            return res.json({ status: true });
+    }
+    return res.json({ status: false });
+});
+exports.tokenValidation = tokenValidation;
