@@ -19,12 +19,13 @@ const createUser = (email, password) => __awaiter(void 0, void 0, void 0, functi
     const hasUser = yield users_1.default.findOne({ email: email });
     if (!hasUser) {
         const hash = bcrypt_1.default.hashSync(password, 10);
+        const token = bcrypt_1.default.hashSync(String(Math.random() * 1000), 10);
         let newUser = yield users_1.default.create({
             email: email,
             password: hash
         });
         yield newUser.save();
-        return { response: "user has been created", status: true };
+        return { response: "user has been created", status: true, token: token };
     }
     return { response: "user already exists", status: false };
 });
