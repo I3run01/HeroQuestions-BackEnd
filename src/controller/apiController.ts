@@ -24,7 +24,7 @@ export const login = async (req: Request, res: Response) => {
     if(req.body.email && req.body.password) {
         let {email, password} = req.body
         const user = await services.findbyEmail(email)
-        const matchPassword = await services.matchPassword(password, user?.token)
+        const matchPassword = await services.matchPassword(password, user?.password)
         
         if(user && matchPassword )return res.json({status: true, token: user.token})
         return res.json({status:false})
@@ -35,11 +35,11 @@ export const login = async (req: Request, res: Response) => {
 
 export const tokenValidation = async (req: Request, res: Response) => {
 
-    if(req.body.token && req.body.email) {
+    if(req.body.token) {
 
-        let {token, email} = req.body
-        const user = await services.findbyEmail(email)
+        let {token} = req.body
+        const user = await services.findbyToken(token)
 
-        if(user?.token === token) return res.json({status: true})
+        if(user && user?.token === token) return res.json({user: user.email, status: true})
     } return res.json({status: false})
 }

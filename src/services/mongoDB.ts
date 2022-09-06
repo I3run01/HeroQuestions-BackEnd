@@ -19,7 +19,10 @@ export const createUser = async (email: string, password: string) => {
 
 export const findbyEmail = async (email: string) => {
     return await User.findOne({email: email})
+}
 
+export const findbyToken = async (token: string) => {
+    return await User.findOne({token: token})
 }
 
 export const matchPassword = async (passwordText?: string, encrypted?: string) => {

@@ -51,7 +51,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.body.email && req.body.password) {
         let { email, password } = req.body;
         const user = yield services.findbyEmail(email);
-        const matchPassword = yield services.matchPassword(password, user === null || user === void 0 ? void 0 : user.token);
+        const matchPassword = yield services.matchPassword(password, user === null || user === void 0 ? void 0 : user.password);
         if (user && matchPassword)
             return res.json({ status: true, token: user.token });
         return res.json({ status: false });
@@ -60,11 +60,11 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.login = login;
 const tokenValidation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.body.token && req.body.email) {
-        let { token, email } = req.body;
-        const user = yield services.findbyEmail(email);
-        if ((user === null || user === void 0 ? void 0 : user.token) === token)
-            return res.json({ status: true });
+    if (req.body.token) {
+        let { token } = req.body;
+        const user = yield services.findbyToken(token);
+        if (user && (user === null || user === void 0 ? void 0 : user.token) === token)
+            return res.json({ user: user.email, status: true });
     }
     return res.json({ status: false });
 });
