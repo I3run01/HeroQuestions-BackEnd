@@ -6,12 +6,14 @@ export const createUser = async (email: string, password: string) => {
     const hasUser = await User.findOne({email: email})
     if(!hasUser) {
         const hash = bcrypt.hashSync(password, 10)
+        const token = bcrypt.hashSync(email+String(Math.random()), 10)
         let newUser = await User.create({
             email: email,
-            token: hash,
+            password: hash,
+            token: token
         })
         await newUser.save()
-        return {response: "user has been created", status: true, token: hash}
+        return {response: "user has been created", status: true, token: token}
     } return {response: "user already exists", status: false}
 }
 
