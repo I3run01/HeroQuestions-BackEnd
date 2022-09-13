@@ -1,6 +1,15 @@
 import User from '../Model/users'
 import bcrypt from 'bcrypt'
 
+type heroQuestion = {
+    heroName?:string,
+    heroCity?: string,
+    heroExperience?: string,
+    heroLocomotion?: string,
+    heroAbilities?: string,
+    heroSuperPower?: string,
+}
+
 export const createUser = async (email: string, password: string) => {
 
     const hasUser = await User.findOne({email: email})
@@ -28,4 +37,8 @@ export const findbyToken = async (token: string) => {
 export const matchPassword = async (passwordText?: string, encrypted?: string) => {
     if(passwordText && encrypted) return bcrypt.compareSync(passwordText, encrypted)
     return false
+}
+
+export const sendHeroQuestions = (heroQuestions: heroQuestion, email: string) => {
+    
 }
