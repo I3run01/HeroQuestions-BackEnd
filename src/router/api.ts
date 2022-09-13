@@ -7,5 +7,6 @@ router.get('/ping', apiController.ping)
 router.post('/register', apiController.register)
 router.post('/login', apiController.login)
 router.post('/tokenValidation', apiController.tokenValidation)
+router.post('/heroQuestions', apiController.heroQuestions)
 
 export default router

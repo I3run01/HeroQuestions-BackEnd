@@ -5,7 +5,12 @@ type UsersType = {
     password: string
     token: string
     heroQuestion: {
-        
+        heroName:string,
+        heroCity: string,
+        heroExperience: string,
+        heroLocomotion: string,
+        heroAbilities: string,
+        heroSuperPower: string,
     }
 }
 
@@ -13,6 +18,7 @@ const schema = new Schema<UsersType>({
     email: {type: String, required: true},
     password: {type: String, required: true},
     token: {type: String, required: true},
+    heroQuestion: {type: Object, required: false}
 })
 
 const modelName: string = 'users'

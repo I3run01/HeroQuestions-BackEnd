@@ -43,3 +43,16 @@ export const tokenValidation = async (req: Request, res: Response) => {
         if(user && user?.token === token) return res.json({user: user.email, status: true})
     } return res.json({status: false})
 }
+
+export const heroQuestions = async (req: Request, res: Response) => {
+
+    if(!req.body.token) {
+        let {token} = req.body
+        let user = await services.findbyToken(token)
+        console.log(user)
+    }
+
+    
+
+
+}
