@@ -4,6 +4,9 @@ type UsersType = {
     email: string
     password: string
     token: string
+    heroQuestion: {
+        
+    }
 }
 
 const schema = new Schema<UsersType>({
