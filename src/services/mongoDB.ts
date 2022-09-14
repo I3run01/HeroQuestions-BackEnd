@@ -117,5 +117,5 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
         )
         return {status: true}
     }
-    return {response: 'No user user has been found', status: false}
+    return {response: 'No user user has been founded', status: false}
 }

@@ -103,6 +103,6 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
         });
         return { status: true };
     }
-    return { response: 'No user user has been found', status: false };
+    return { response: 'No user user has been founded', status: false };
 });
 exports.sendHeroQuestions = sendHeroQuestions;
