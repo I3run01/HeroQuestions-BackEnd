@@ -8,5 +8,6 @@ router.post('/register', apiController.register)
 router.post('/login', apiController.login)
 router.post('/tokenValidation', apiController.tokenValidation)
 router.post('/heroQuestions', apiController.heroQuestions)
+router.post('/testping', apiController.ping)
 
 export default router
