@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tokenValidation = exports.login = exports.register = exports.ping = void 0;
+exports.heroQuestions = exports.tokenValidation = exports.login = exports.register = exports.ping = void 0;
 const services = __importStar(require("../services/mongoDB"));
 const ping = (req, res) => {
     res.json({ pong: true });
@@ -69,3 +69,34 @@ const tokenValidation = (req, res) => __awaiter(void 0, void 0, void 0, function
     return res.json({ status: false });
 });
 exports.tokenValidation = tokenValidation;
+const heroQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.body.token) {
+        let { token, parameter, value } = req.body;
+        if (parameter === 'heroName') {
+            let status = yield services.sendHeroQuestions(token, { heroName: value });
+            return res.json(status);
+        }
+        if (parameter === 'heroCity') {
+            let status = yield services.sendHeroQuestions(token, { heroCity: value });
+            return res.json(status);
+        }
+        if (parameter === 'heroExperience') {
+            let status = yield services.sendHeroQuestions(token, { heroExperience: value });
+            return res.json(status);
+        }
+        if (parameter === 'heroLocomotion') {
+            let status = yield services.sendHeroQuestions(token, { heroLocomotion: value });
+            return res.json(status);
+        }
+        if (parameter === 'heroAbilities') {
+            let status = yield services.sendHeroQuestions(token, { heroAbilities: value });
+            return res.json(status);
+        }
+        if (parameter === 'heroSuperPower') {
+            let status = yield services.sendHeroQuestions(token, { heroSuperPower: value });
+            return res.json(status);
+        }
+    }
+    res.json({ status: false });
+});
+exports.heroQuestions = heroQuestions;
