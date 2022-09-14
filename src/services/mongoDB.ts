@@ -1,6 +1,5 @@
 import User from '../Model/users'
 import bcrypt from 'bcrypt'
-import { heroQuestions } from '../controller/apiController'
 
 type heroQuestions = {
     heroName?:string,
@@ -22,12 +21,12 @@ export const createUser = async (email: string, password: string) => {
             password: hash,
             token: token,
             heroQuestions: {
-                heroName: 'null',
-                heroCity: 'null',
-                heroExperience: 'null',
-                heroLocomotion: 'null',
-                heroAbilities: 'null',
-                heroSuperPower: 'null',
+                heroName: null,
+                heroCity: null,
+                heroExperience: null,
+                heroLocomotion: null,
+                heroAbilities: null,
+                heroSuperPower: null,
             },
         })
         await newUser.save()
@@ -50,11 +49,72 @@ export const matchPassword = async (passwordText?: string, encrypted?: string) =
 
 export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuestions) => {
 
-    const user = await User.findOne({token: token})
+    
+    let user = await User.findOne({token: token})
     if(user && heroQuestions?.heroName) {
-        user.heroQuestions.heroName = '122ewfewsda'
-        await user.save()
-        console.log(user)
+        await User.updateOne(
+            {token: token},
+            {
+                $set: {
+                    'heroQuestions.heroName': heroQuestions.heroName
+                }
+            },
+        )
+        return {status: true}
+    }
+    if(user && heroQuestions?.heroCity) {
+        await User.updateOne(
+            {token: token},
+            {
+                $set: {
+                    'heroQuestions.heroCity': heroQuestions.heroCity
+                }
+            },
+        )
+        return {status: true}
+    }
+    if(user && heroQuestions?.heroExperience) {
+        await User.updateOne(
+            {token: token},
+            {
+                $set: {
+                    'heroQuestions.heroExperience': heroQuestions.heroExperience
+                }
+            },
+        )
+        return {status: true}
+    }
+    if(user && heroQuestions?.heroLocomotion) {
+        await User.updateOne(
+            {token: token},
+            {
+                $set: {
+                    'heroQuestions.heroLocomotion': heroQuestions.heroLocomotion
+                }
+            },
+        )
+        return {status: true}
+    }
+    if(user && heroQuestions?.heroAbilities) {
+        await User.updateOne(
+            {token: token},
+            {
+                $set: {
+                    'heroQuestions.heroAbilities': heroQuestions.heroAbilities
+                }
+            },
+        )
+        return {status: true}
+    }
+    if(user && heroQuestions?.heroSuperPower) {
+        await User.updateOne(
+            {token: token},
+            {
+                $set: {
+                    'heroQuestions.heroSuperPower': heroQuestions.heroSuperPower
+                }
+            },
+        )
         return {status: true}
     }
     return {response: 'No user user has been found', status: false}

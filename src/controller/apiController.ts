@@ -45,8 +45,31 @@ export const tokenValidation = async (req: Request, res: Response) => {
 export const heroQuestions = async (req: Request, res: Response) => {
 
     if(req.body.token) {
-        let {token} = req.body
-        let status = await services.sendHeroQuestions(token, {heroName: 'Spider=man'})
-        return res.json(status)
+        let {token, parameter, value} = req.body
+        if(parameter === 'heroName') {
+            let status = await services.sendHeroQuestions(token, {heroName: value})
+            return res.json(status)
+        }
+        if(parameter === 'heroCity') {
+            let status = await services.sendHeroQuestions(token, {heroCity: value})
+            return res.json(status)
+        }
+        if(parameter === 'heroExperience') {
+            let status = await services.sendHeroQuestions(token, {heroExperience: value})
+            return res.json(status)
+        }
+        if(parameter === 'heroLocomotion') {
+            let status = await services.sendHeroQuestions(token, {heroLocomotion: value})
+            return res.json(status)
+        }
+        if(parameter === 'heroAbilities') {
+            let status = await services.sendHeroQuestions(token, {heroAbilities: value})
+            return res.json(status)
+        }
+        if(parameter === 'heroSuperPower') {
+            let status = await services.sendHeroQuestions(token, {heroSuperPower: value})
+            return res.json(status)
+        }
+
     } res.json({status: false})
 }
