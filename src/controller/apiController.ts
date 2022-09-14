@@ -1,5 +1,4 @@
-import e, { Request, Response } from 'express'
-import { json } from 'stream/consumers'
+import { Request, Response } from 'express'
 import * as services from '../services/mongoDB'
 
 
@@ -39,7 +38,6 @@ export const tokenValidation = async (req: Request, res: Response) => {
 
         let {token} = req.body
         const user = await services.findbyToken(token)
-
         if(user && user?.token === token) return res.json({user: user.email, status: true})
     } return res.json({status: false})
 }
@@ -48,9 +46,7 @@ export const heroQuestions = async (req: Request, res: Response) => {
 
     if(req.body.token) {
         let {token} = req.body
-        let user = await services.findbyToken(token)
-        console.log(user)
-
-        res.json({status: false})
+        let status = await services.sendHeroQuestions(token, {heroName: 'Spider=man'})
+        return res.json(status)
     } res.json({status: false})
 }

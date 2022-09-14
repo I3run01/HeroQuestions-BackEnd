@@ -1,7 +1,8 @@
 import User from '../Model/users'
 import bcrypt from 'bcrypt'
+import { heroQuestions } from '../controller/apiController'
 
-type heroQuestion = {
+type heroQuestions = {
     heroName?:string,
     heroCity?: string,
     heroExperience?: string,
@@ -19,7 +20,15 @@ export const createUser = async (email: string, password: string) => {
         let newUser = await User.create({
             email: email,
             password: hash,
-            token: token
+            token: token,
+            heroQuestions: {
+                heroName: 'null',
+                heroCity: 'null',
+                heroExperience: 'null',
+                heroLocomotion: 'null',
+                heroAbilities: 'null',
+                heroSuperPower: 'null',
+            },
         })
         await newUser.save()
         return {response: "user has been created", status: true, token: token}
@@ -39,6 +48,14 @@ export const matchPassword = async (passwordText?: string, encrypted?: string) =
     return false
 }
 
-export const sendHeroQuestions = (heroQuestions: heroQuestion, email: string) => {
-    
+export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuestions) => {
+
+    const user = await User.findOne({token: token})
+    if(user && heroQuestions?.heroName) {
+        user.heroQuestions.heroName = '122ewfewsda'
+        await user.save()
+        console.log(user)
+        return {status: true}
+    }
+    return {response: 'No user user has been found', status: false}
 }
