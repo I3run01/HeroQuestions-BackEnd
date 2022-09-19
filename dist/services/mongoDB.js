@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendHeroQuestions = exports.matchPassword = exports.findbyToken = exports.findbyEmail = exports.createUser = void 0;
+exports.getAllHeroAnswer = exports.sendHeroQuestions = exports.matchPassword = exports.findbyToken = exports.findbyEmail = exports.createUser = void 0;
 const users_1 = __importDefault(require("../Model/users"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const createUser = (email, password) => __awaiter(void 0, void 0, void 0, function* () {
@@ -106,3 +106,12 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
     return { response: 'No user user has been founded', status: false };
 });
 exports.sendHeroQuestions = sendHeroQuestions;
+const getAllHeroAnswer = (token) => __awaiter(void 0, void 0, void 0, function* () {
+    let user = yield users_1.default.findOne({ token: token });
+    if (user) {
+        let heroQuestions = user === null || user === void 0 ? void 0 : user.heroQuestions;
+        return { status: true, heroQuestions };
+    }
+    return { status: false, response: 'No user has been founded' };
+});
+exports.getAllHeroAnswer = getAllHeroAnswer;

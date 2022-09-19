@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.heroQuestions = exports.tokenValidation = exports.login = exports.register = exports.ping = void 0;
+exports.getAllHeroAnswer = exports.heroQuestions = exports.tokenValidation = exports.login = exports.register = exports.ping = void 0;
 const services = __importStar(require("../services/mongoDB"));
 const ping = (req, res) => {
     res.json({ pong: true });
@@ -100,3 +100,12 @@ const heroQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     res.json({ status: false });
 });
 exports.heroQuestions = heroQuestions;
+const getAllHeroAnswer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (req.body.token) {
+        let { token } = req.body;
+        let response = yield services.getAllHeroAnswer(token);
+        return res.json(response);
+    }
+    res.json({ status: false });
+});
+exports.getAllHeroAnswer = getAllHeroAnswer;
