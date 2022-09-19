@@ -119,3 +119,13 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
     }
     return {response: 'No user user has been founded', status: false}
 }
+
+export const getAllHeroAnswer = async (token: string) => {
+    let user = await User.findOne({token: token})
+    
+    if(user) {
+        let heroQuestions = user?.heroQuestions
+
+        return {status: true, heroQuestions}
+    }return {status: false, response: 'No user has been founded'}
+}

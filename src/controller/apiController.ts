@@ -1,7 +1,6 @@
 import { Request, Response } from 'express'
 import * as services from '../services/mongoDB'
 
-
 export const ping = (req: Request, res: Response) => {
     res.json({ pong: true })
 }
@@ -45,7 +44,9 @@ export const tokenValidation = async (req: Request, res: Response) => {
 export const heroQuestions = async (req: Request, res: Response) => {
 
     if(req.body.token) {
+
         let {token, parameter, value} = req.body
+
         if(parameter === 'heroName') {
             let status = await services.sendHeroQuestions(token, {heroName: value})
             return res.json(status)
@@ -71,5 +72,15 @@ export const heroQuestions = async (req: Request, res: Response) => {
             return res.json(status)
         }
 
+    } res.json({status: false})
+}
+
+export const getAllHeroAnswer = async( req: Request, res: Response) => {
+    if(req.body.token) {
+        let { token } = req.body
+
+        let response = await services.getAllHeroAnswer(token)
+        
+        return res.json(response)
     } res.json({status: false})
 }
