@@ -47,9 +47,7 @@ export const matchPassword = async (passwordText?: string, encrypted?: string) =
     return false
 }
 
-export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuestions) => {
-
-    
+export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuestions) => { 
     let user = await User.findOne({token: token})
     if(user && heroQuestions?.heroName) {
         await User.updateOne(
@@ -60,7 +58,8 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {"status": true}
+        let json = JSON.stringify({"status": true})
+        return {json}
     }
     if(user && heroQuestions?.heroCity) {
         await User.updateOne(
@@ -71,7 +70,8 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {"status": true}
+        let json = JSON.stringify({"status": true})
+        return {json}
     }
     if(user && heroQuestions?.heroExperience) {
         await User.updateOne(
@@ -82,7 +82,8 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {"status": true}
+        let json = JSON.stringify({"status": true})
+        return {json}
     }
     if(user && heroQuestions?.heroLocomotion) {
         await User.updateOne(
@@ -93,7 +94,8 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {"status": true}
+        let json = JSON.stringify({"status": true})
+        return {json}
     }
     if(user && heroQuestions?.heroAbilities) {
         await User.updateOne(
@@ -104,7 +106,8 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {"status": true}
+        let json = JSON.stringify({"status": true})
+        return {json}
     }
     if(user && heroQuestions?.heroSuperPower) {
         await User.updateOne(
@@ -115,9 +118,11 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {"status": true}
+        let json = JSON.stringify({"status": true})
+        return {json}
     }
-    return {"response": 'No user user has been founded', status: false}
+    let json = JSON.stringify({"response": 'No user user has been founded', "status": false})
+    return {json}
 }
 
 export const getAllHeroAnswer = async (token: string) => {
@@ -125,7 +130,7 @@ export const getAllHeroAnswer = async (token: string) => {
     
     if(user) {
         let heroQuestions = user?.heroQuestions
-
-        return {status: true, heroQuestions}
-    }return {status: false, response: 'No user has been founded'}
+        let json = JSON.stringify({"status": true, heroQuestions})
+        return json
+    }return JSON.stringify({"status": false, "response": 'No user has been founded'})
 }

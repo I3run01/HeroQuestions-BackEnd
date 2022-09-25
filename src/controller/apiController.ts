@@ -37,8 +37,8 @@ export const tokenValidation = async (req: Request, res: Response) => {
 
         let {token} = req.body
         const user = await services.findbyToken(token)
-        if(user && user?.token === token) return res.json({"user": user.email, "status": true})
-    } return res.json({"status": false})
+        if(user && user?.token === token) return res.json(JSON.stringify({"user": user.email, "status": true}))
+    } return res.json(JSON.stringify({"status": false}))
 }
 
 export const heroQuestions = async (req: Request, res: Response) => {
@@ -72,7 +72,7 @@ export const heroQuestions = async (req: Request, res: Response) => {
             return res.json(status)
         }
 
-    } res.json({status: false})
+    } res.json(JSON.stringify({"status": false}))
 }
 
 export const getAllHeroAnswer = async( req: Request, res: Response) => {
@@ -82,5 +82,5 @@ export const getAllHeroAnswer = async( req: Request, res: Response) => {
         let response = await services.getAllHeroAnswer(token)
         
         return res.json(response)
-    } res.json({status: false})
+    } res.json(JSON.stringify({"status": false}))
 }
