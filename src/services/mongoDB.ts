@@ -1,4 +1,4 @@
-import User from '../Model/users'
+import User from '../Model/Users'
 import bcrypt from 'bcrypt'
 
 type heroQuestions = {
@@ -60,7 +60,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {status: true}
+        return {"status": true}
     }
     if(user && heroQuestions?.heroCity) {
         await User.updateOne(
@@ -71,7 +71,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {status: true}
+        return {"status": true}
     }
     if(user && heroQuestions?.heroExperience) {
         await User.updateOne(
@@ -82,7 +82,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {status: true}
+        return {"status": true}
     }
     if(user && heroQuestions?.heroLocomotion) {
         await User.updateOne(
@@ -93,7 +93,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {status: true}
+        return {"status": true}
     }
     if(user && heroQuestions?.heroAbilities) {
         await User.updateOne(
@@ -104,7 +104,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {status: true}
+        return {"status": true}
     }
     if(user && heroQuestions?.heroSuperPower) {
         await User.updateOne(
@@ -115,9 +115,9 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        return {status: true}
+        return {"status": true}
     }
-    return {response: 'No user user has been founded', status: false}
+    return {"response": 'No user user has been founded', status: false}
 }
 
 export const getAllHeroAnswer = async (token: string) => {
