@@ -35,7 +35,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllHeroAnswer = exports.heroQuestions = exports.tokenValidation = exports.login = exports.register = exports.ping = void 0;
 const services = __importStar(require("../services/mongoDB"));
 const ping = (req, res) => {
-    res.json({ pong: true });
+    res.json({ "pongv2": true });
 };
 exports.ping = ping;
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
