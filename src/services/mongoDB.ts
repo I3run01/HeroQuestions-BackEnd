@@ -30,16 +30,16 @@ export const createUser = async (email: string, password: string) => {
             },
         })
         await newUser.save()
-        return {response: "user has been created", status: true, token: token}
-    } return {response: "user already exists", status: false}
+        return {"response": "user has been created", "status": true, token: token}
+    } return {"response": "user already exists", "status": false}
 }
 
 export const findbyEmail = async (email: string) => {
-    return await User.findOne({email: email})
+    return await User.findOne({"email": email})
 }
 
 export const findbyToken = async (token: string) => {
-    return await User.findOne({token: token})
+    return await User.findOne({"token": token})
 }
 
 export const matchPassword = async (passwordText?: string, encrypted?: string) => {
@@ -70,7 +70,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = JSON.stringify({"status": true})
+        let json = {"status": true}
         return {json}
     }
     if(user && heroQuestions?.heroExperience) {
@@ -106,7 +106,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = JSON.stringify({"status": true})
+        let json = {"status": true}
         return {json}
     }
     if(user && heroQuestions?.heroSuperPower) {
@@ -118,19 +118,19 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = JSON.stringify({"status": true})
+        let json = {"status": true}
         return {json}
     }
-    let json = JSON.stringify({"response": 'No user user has been founded', "status": false})
+    let json = {"response": 'No user user has been founded', "status": false}
     return {json}
 }
 
 export const getAllHeroAnswer = async (token: string) => {
-    let user = await User.findOne({token: token})
+    let user = await User.findOne({"token": token})
     
     if(user) {
         let heroQuestions = user?.heroQuestions
         let json = JSON.stringify({"status": true, heroQuestions})
         return json
-    }return {status: false, response: 'No user has been founded'}
+    }return {"status": false, "response": 'No user has been founded'}
 }

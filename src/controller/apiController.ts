@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import * as services from '../services/mongoDB'
 
 export const ping = (req: Request, res: Response) => {
-    res.json({ "pongv2": true })
+    res.json({ "pong": true })
 }
 
 export const register = async (req: Request, res: Response) => {
@@ -13,7 +13,7 @@ export const register = async (req: Request, res: Response) => {
         const response = await services.createUser(email , password)
         return res.json(response)
 
-    }res.json({response: 'E-mail or password not sent', status: false})
+    }res.json({"response": 'E-mail or password not sent', status: false})
 
 }
 
@@ -27,7 +27,7 @@ export const login = async (req: Request, res: Response) => {
         if(user && matchPassword )return res.json({status: true, token: user.token})
         return res.json({status:false})
         
-    }res.json({response: 'E-mail or password not sent', status: false})
+    }res.json({"response": 'E-mail or password not sent', status: false})
     
 }
 
@@ -37,8 +37,8 @@ export const tokenValidation = async (req: Request, res: Response) => {
 
         let {token} = req.body
         const user = await services.findbyToken(token)
-        if(user && user?.token === token) return res.json({user: user.email, status: true, test: 'test'})
-    } return res.json({status: false})
+        if(user && user?.token === token) return res.json({"user": user.email, "status": true})
+    } return res.json({"status": false})
 }
 
 export const heroQuestions = async (req: Request, res: Response) => {
@@ -72,7 +72,7 @@ export const heroQuestions = async (req: Request, res: Response) => {
             return res.json(status)
         }
 
-    } res.json({status: false})
+    } res.json({"status": false})
 }
 
 export const getAllHeroAnswer = async( req: Request, res: Response) => {
@@ -82,5 +82,5 @@ export const getAllHeroAnswer = async( req: Request, res: Response) => {
         let response = await services.getAllHeroAnswer(token)
         
         return res.json(response)
-    } res.json({status: false})
+    } res.json({"status": false})
 }

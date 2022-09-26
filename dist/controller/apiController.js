@@ -35,7 +35,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllHeroAnswer = exports.heroQuestions = exports.tokenValidation = exports.login = exports.register = exports.ping = void 0;
 const services = __importStar(require("../services/mongoDB"));
 const ping = (req, res) => {
-    res.json({ "pongv2": true });
+    res.json({ "pong": true });
 };
 exports.ping = ping;
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -44,7 +44,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield services.createUser(email, password);
         return res.json(response);
     }
-    res.json({ response: 'E-mail or password not sent', status: false });
+    res.json({ "response": 'E-mail or password not sent', status: false });
 });
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -56,7 +56,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return res.json({ status: true, token: user.token });
         return res.json({ status: false });
     }
-    res.json({ response: 'E-mail or password not sent', status: false });
+    res.json({ "response": 'E-mail or password not sent', status: false });
 });
 exports.login = login;
 const tokenValidation = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -64,9 +64,9 @@ const tokenValidation = (req, res) => __awaiter(void 0, void 0, void 0, function
         let { token } = req.body;
         const user = yield services.findbyToken(token);
         if (user && (user === null || user === void 0 ? void 0 : user.token) === token)
-            return res.json({ user: user.email, status: true, test: 'test' });
+            return res.json({ "user": user.email, "status": true });
     }
-    return res.json({ status: false });
+    return res.json({ "status": false });
 });
 exports.tokenValidation = tokenValidation;
 const heroQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -97,7 +97,7 @@ const heroQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             return res.json(status);
         }
     }
-    res.json({ status: false });
+    res.json({ "status": false });
 });
 exports.heroQuestions = heroQuestions;
 const getAllHeroAnswer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -106,6 +106,6 @@ const getAllHeroAnswer = (req, res) => __awaiter(void 0, void 0, void 0, functio
         let response = yield services.getAllHeroAnswer(token);
         return res.json(response);
     }
-    res.json({ status: false });
+    res.json({ "status": false });
 });
 exports.getAllHeroAnswer = getAllHeroAnswer;

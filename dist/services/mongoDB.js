@@ -34,17 +34,17 @@ const createUser = (email, password) => __awaiter(void 0, void 0, void 0, functi
             },
         });
         yield newUser.save();
-        return { response: "user has been created", status: true, token: token };
+        return { "response": "user has been created", "status": true, token: token };
     }
-    return { response: "user already exists", status: false };
+    return { "response": "user already exists", "status": false };
 });
 exports.createUser = createUser;
 const findbyEmail = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield users_1.default.findOne({ email: email });
+    return yield users_1.default.findOne({ "email": email });
 });
 exports.findbyEmail = findbyEmail;
 const findbyToken = (token) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield users_1.default.findOne({ token: token });
+    return yield users_1.default.findOne({ "token": token });
 });
 exports.findbyToken = findbyToken;
 const matchPassword = (passwordText, encrypted) => __awaiter(void 0, void 0, void 0, function* () {
@@ -70,7 +70,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroCity': heroQuestions.heroCity
             }
         });
-        let json = JSON.stringify({ "status": true });
+        let json = { "status": true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroExperience)) {
@@ -97,7 +97,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroAbilities': heroQuestions.heroAbilities
             }
         });
-        let json = JSON.stringify({ "status": true });
+        let json = { "status": true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroSuperPower)) {
@@ -106,20 +106,20 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroSuperPower': heroQuestions.heroSuperPower
             }
         });
-        let json = JSON.stringify({ "status": true });
+        let json = { "status": true };
         return { json };
     }
-    let json = JSON.stringify({ "response": 'No user user has been founded', "status": false });
+    let json = { "response": 'No user user has been founded', "status": false };
     return { json };
 });
 exports.sendHeroQuestions = sendHeroQuestions;
 const getAllHeroAnswer = (token) => __awaiter(void 0, void 0, void 0, function* () {
-    let user = yield users_1.default.findOne({ token: token });
+    let user = yield users_1.default.findOne({ "token": token });
     if (user) {
         let heroQuestions = user === null || user === void 0 ? void 0 : user.heroQuestions;
         let json = JSON.stringify({ "status": true, heroQuestions });
         return json;
     }
-    return { status: false, response: 'No user has been founded' };
+    return { "status": false, "response": 'No user has been founded' };
 });
 exports.getAllHeroAnswer = getAllHeroAnswer;
