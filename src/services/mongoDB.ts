@@ -132,5 +132,5 @@ export const getAllHeroAnswer = async (token: string) => {
         let heroQuestions = user?.heroQuestions
         let json = JSON.stringify({"status": true, heroQuestions})
         return json
-    }return JSON.stringify({"status": false, "response": 'No user has been founded'})
+    }return {status: false, response: 'No user has been founded'}
 }
