@@ -13,14 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllHeroAnswer = exports.sendHeroQuestions = exports.matchPassword = exports.findbyToken = exports.findbyEmail = exports.createUser = void 0;
-const users_1 = __importDefault(require("../Model/users"));
+const aestrfw_1 = __importDefault(require("../Model/aestrfw"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const createUser = (email, password) => __awaiter(void 0, void 0, void 0, function* () {
-    const hasUser = yield users_1.default.findOne({ email: email });
+    const hasUser = yield aestrfw_1.default.findOne({ email: email });
     if (!hasUser) {
         const hash = bcrypt_1.default.hashSync(password, 10);
         const token = bcrypt_1.default.hashSync(email + String(Math.random()), 10);
-        let newUser = yield users_1.default.create({
+        let newUser = yield aestrfw_1.default.create({
             email: email,
             password: hash,
             token: token,
@@ -40,11 +40,11 @@ const createUser = (email, password) => __awaiter(void 0, void 0, void 0, functi
 });
 exports.createUser = createUser;
 const findbyEmail = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield users_1.default.findOne({ email: email });
+    return yield aestrfw_1.default.findOne({ email: email });
 });
 exports.findbyEmail = findbyEmail;
 const findbyToken = (token) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield users_1.default.findOne({ token: token });
+    return yield aestrfw_1.default.findOne({ token: token });
 });
 exports.findbyToken = findbyToken;
 const matchPassword = (passwordText, encrypted) => __awaiter(void 0, void 0, void 0, function* () {
@@ -54,9 +54,9 @@ const matchPassword = (passwordText, encrypted) => __awaiter(void 0, void 0, voi
 });
 exports.matchPassword = matchPassword;
 const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, void 0, function* () {
-    let user = yield users_1.default.findOne({ token: token });
+    let user = yield aestrfw_1.default.findOne({ token: token });
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroName)) {
-        yield users_1.default.updateOne({ token: token }, {
+        yield aestrfw_1.default.updateOne({ token: token }, {
             $set: {
                 'heroQuestions.heroName': heroQuestions.heroName
             }
@@ -64,7 +64,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
         return { status: true };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroCity)) {
-        yield users_1.default.updateOne({ token: token }, {
+        yield aestrfw_1.default.updateOne({ token: token }, {
             $set: {
                 'heroQuestions.heroCity': heroQuestions.heroCity
             }
@@ -72,7 +72,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
         return { status: true };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroExperience)) {
-        yield users_1.default.updateOne({ token: token }, {
+        yield aestrfw_1.default.updateOne({ token: token }, {
             $set: {
                 'heroQuestions.heroExperience': heroQuestions.heroExperience
             }
@@ -80,7 +80,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
         return { status: true };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroLocomotion)) {
-        yield users_1.default.updateOne({ token: token }, {
+        yield aestrfw_1.default.updateOne({ token: token }, {
             $set: {
                 'heroQuestions.heroLocomotion': heroQuestions.heroLocomotion
             }
@@ -88,7 +88,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
         return { status: true };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroAbilities)) {
-        yield users_1.default.updateOne({ token: token }, {
+        yield aestrfw_1.default.updateOne({ token: token }, {
             $set: {
                 'heroQuestions.heroAbilities': heroQuestions.heroAbilities
             }
@@ -96,7 +96,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
         return { status: true };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroSuperPower)) {
-        yield users_1.default.updateOne({ token: token }, {
+        yield aestrfw_1.default.updateOne({ token: token }, {
             $set: {
                 'heroQuestions.heroSuperPower': heroQuestions.heroSuperPower
             }
@@ -107,7 +107,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
 });
 exports.sendHeroQuestions = sendHeroQuestions;
 const getAllHeroAnswer = (token) => __awaiter(void 0, void 0, void 0, function* () {
-    let user = yield users_1.default.findOne({ token: token });
+    let user = yield aestrfw_1.default.findOne({ token: token });
     if (user) {
         let heroQuestions = user === null || user === void 0 ? void 0 : user.heroQuestions;
         return { status: true, heroQuestions };
