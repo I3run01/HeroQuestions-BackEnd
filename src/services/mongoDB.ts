@@ -58,7 +58,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = JSON.stringify({"status": true})
+        let json = {"status": true}
         return {json}
     }
     if(user && heroQuestions?.heroCity) {
@@ -82,7 +82,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = JSON.stringify({"status": true})
+        let json = {"status": true}
         return {json}
     }
     if(user && heroQuestions?.heroLocomotion) {
@@ -94,7 +94,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = JSON.stringify({"status": true})
+        let json = {"status": true}
         return {json}
     }
     if(user && heroQuestions?.heroAbilities) {

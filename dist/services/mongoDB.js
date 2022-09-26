@@ -61,7 +61,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroName': heroQuestions.heroName
             }
         });
-        let json = JSON.stringify({ "status": true });
+        let json = { "status": true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroCity)) {
@@ -79,7 +79,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroExperience': heroQuestions.heroExperience
             }
         });
-        let json = JSON.stringify({ "status": true });
+        let json = { "status": true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroLocomotion)) {
@@ -88,7 +88,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroLocomotion': heroQuestions.heroLocomotion
             }
         });
-        let json = JSON.stringify({ "status": true });
+        let json = { "status": true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroAbilities)) {
