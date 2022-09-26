@@ -120,6 +120,6 @@ const getAllHeroAnswer = (token) => __awaiter(void 0, void 0, void 0, function* 
         let json = JSON.stringify({ "status": true, heroQuestions });
         return json;
     }
-    return JSON.stringify({ "status": false, "response": 'No user has been founded' });
+    return { status: false, response: 'No user has been founded' };
 });
 exports.getAllHeroAnswer = getAllHeroAnswer;

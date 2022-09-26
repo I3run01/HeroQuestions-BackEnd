@@ -64,9 +64,9 @@ const tokenValidation = (req, res) => __awaiter(void 0, void 0, void 0, function
         let { token } = req.body;
         const user = yield services.findbyToken(token);
         if (user && (user === null || user === void 0 ? void 0 : user.token) === token)
-            return res.json(JSON.stringify({ "user": user.email, "status": true, "test": 'test' }));
+            return res.json({ user: user.email, status: true, test: 'test' });
     }
-    return res.json(JSON.stringify({ "status": false }));
+    return res.json({ status: false });
 });
 exports.tokenValidation = tokenValidation;
 const heroQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -97,7 +97,7 @@ const heroQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             return res.json(status);
         }
     }
-    res.json(JSON.stringify({ "status": false }));
+    res.json({ status: false });
 });
 exports.heroQuestions = heroQuestions;
 const getAllHeroAnswer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -106,6 +106,6 @@ const getAllHeroAnswer = (req, res) => __awaiter(void 0, void 0, void 0, functio
         let response = yield services.getAllHeroAnswer(token);
         return res.json(response);
     }
-    res.json(JSON.stringify({ "status": false }));
+    res.json({ status: false });
 });
 exports.getAllHeroAnswer = getAllHeroAnswer;
