@@ -1,4 +1,4 @@
-import User from '../Model/sggsz'
+import User from '../Model/users'
 import bcrypt from 'bcrypt'
 
 type heroQuestions = {
