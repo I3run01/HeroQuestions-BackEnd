@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import * as services from '../services/mongoDB'
 
 export const ping = (req: Request, res: Response) => {
-    res.json({ "pong": true })
+    res.json({ "pongTest": true })
 }
 
 export const register = async (req: Request, res: Response) => {
