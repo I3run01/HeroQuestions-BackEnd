@@ -58,7 +58,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = {"status": true}
+        let json = {status: true}
         return {json}
     }
     if(user && heroQuestions?.heroCity) {
@@ -70,7 +70,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = {"status": true}
+        let json = {status: true}
         return {json}
     }
     if(user && heroQuestions?.heroExperience) {
@@ -82,7 +82,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = {"status": true}
+        let json = {status: true}
         return {json}
     }
     if(user && heroQuestions?.heroLocomotion) {
@@ -94,7 +94,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = {"status": true}
+        let json = {status: true}
         return {json}
     }
     if(user && heroQuestions?.heroAbilities) {
@@ -106,7 +106,7 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = {"status": true}
+        let json = {status: true}
         return {json}
     }
     if(user && heroQuestions?.heroSuperPower) {
@@ -118,10 +118,10 @@ export const sendHeroQuestions = async (token: string, heroQuestions?: heroQuest
                 }
             },
         )
-        let json = {"status": true}
+        let json = {status: true}
         return {json}
     }
-    let json = {"response": 'No user user has been founded', "status": false}
+    let json = {response: 'No user user has been founded', status: false}
     return {json}
 }
 

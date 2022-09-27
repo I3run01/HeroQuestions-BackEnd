@@ -97,7 +97,7 @@ const heroQuestions = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             return res.json(status);
         }
     }
-    res.json({ "status": false });
+    res.json({ status: false });
 });
 exports.heroQuestions = heroQuestions;
 const getAllHeroAnswer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

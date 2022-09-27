@@ -61,7 +61,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroName': heroQuestions.heroName
             }
         });
-        let json = { "status": true };
+        let json = { status: true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroCity)) {
@@ -70,7 +70,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroCity': heroQuestions.heroCity
             }
         });
-        let json = { "status": true };
+        let json = { status: true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroExperience)) {
@@ -79,7 +79,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroExperience': heroQuestions.heroExperience
             }
         });
-        let json = { "status": true };
+        let json = { status: true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroLocomotion)) {
@@ -88,7 +88,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroLocomotion': heroQuestions.heroLocomotion
             }
         });
-        let json = { "status": true };
+        let json = { status: true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroAbilities)) {
@@ -97,7 +97,7 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroAbilities': heroQuestions.heroAbilities
             }
         });
-        let json = { "status": true };
+        let json = { status: true };
         return { json };
     }
     if (user && (heroQuestions === null || heroQuestions === void 0 ? void 0 : heroQuestions.heroSuperPower)) {
@@ -106,10 +106,10 @@ const sendHeroQuestions = (token, heroQuestions) => __awaiter(void 0, void 0, vo
                 'heroQuestions.heroSuperPower': heroQuestions.heroSuperPower
             }
         });
-        let json = { "status": true };
+        let json = { status: true };
         return { json };
     }
-    let json = { "response": 'No user user has been founded', "status": false };
+    let json = { response: 'No user user has been founded', status: false };
     return { json };
 });
 exports.sendHeroQuestions = sendHeroQuestions;

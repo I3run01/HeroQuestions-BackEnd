@@ -72,7 +72,7 @@ export const heroQuestions = async (req: Request, res: Response) => {
             return res.json(status)
         }
 
-    } res.json({"status": false})
+    } res.json({status: false})
 }
 
 export const getAllHeroAnswer = async( req: Request, res: Response) => {
