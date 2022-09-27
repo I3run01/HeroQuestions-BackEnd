@@ -117,7 +117,7 @@ const getAllHeroAnswer = (token) => __awaiter(void 0, void 0, void 0, function* 
     let user = yield users_1.default.findOne({ "token": token });
     if (user) {
         let heroQuestions = user === null || user === void 0 ? void 0 : user.heroQuestions;
-        let json = JSON.stringify({ "status": true, heroQuestions });
+        let json = { "status": true, heroQuestions };
         return json;
     }
     return { "status": false, "response": 'No user has been founded' };

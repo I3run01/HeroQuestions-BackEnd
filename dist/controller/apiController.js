@@ -54,7 +54,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const matchPassword = yield services.matchPassword(password, user === null || user === void 0 ? void 0 : user.password);
         if (user && matchPassword)
             return res.json({ status: true, token: user.token });
-        return res.json({ status: false });
+        return res.json({ "status": false });
     }
     res.json({ "response": 'E-mail or password not sent', status: false });
 });

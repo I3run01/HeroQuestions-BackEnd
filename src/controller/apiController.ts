@@ -25,7 +25,7 @@ export const login = async (req: Request, res: Response) => {
         const matchPassword = await services.matchPassword(password, user?.password)
         
         if(user && matchPassword )return res.json({status: true, token: user.token})
-        return res.json({status:false})
+        return res.json({"status":false})
         
     }res.json({"response": 'E-mail or password not sent', status: false})
     
